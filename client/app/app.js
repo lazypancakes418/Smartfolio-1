@@ -33,6 +33,7 @@ angular.module('app', ['app.landing',
   })
   .controller('ModalController', function ($scope, close, Collage) {
     $scope.url = Collage.get();
+    console.log($scope.url)
     $scope.close = function (result) {
       close(result, 500);
     };
@@ -43,11 +44,15 @@ angular.module('app', ['app.landing',
       fd.append(fileType, files[0])
     }
     $scope.connection = function () {
+     
       Pics.sendPhotos(fd)
+       $scope.close = function () {
+      close(500);
+    }();
     }
-     $scope.close = function (result) {
-      close(result, 500);
-    };
+
+    
+     
   })
   .run(function ($rootScope, $location, Auth) {
     $rootScope.$on('$routeChangeStart', function (evt, next, current) {

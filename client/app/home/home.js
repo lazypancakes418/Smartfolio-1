@@ -1,7 +1,7 @@
-angular.module('app.home', ['ngMaterial', "ng", "ngAnimate", "ngAria", 'angularModalService'])
+angular.module('app.home', ['ngMaterial', "ng", "ngAnimate", "ngAria", 'angularModalService', 'ngMessages', 'material.svgAssetsCache'])
   .controller('HomeCtrl', function ($scope, $rootScope, $mdSidenav, ModalService, Collage, Pics, $window) {
     $scope.toggleLeft = buildToggler('left');
-    $rootScope.back = ""
+    $rootScope.back = "home";
     // $scope.toggleRight = buildToggler('right');
     $scope.images = [];
 
@@ -12,13 +12,7 @@ angular.module('app.home', ['ngMaterial', "ng", "ngAnimate", "ngAria", 'angularM
     }
    $scope.fetcher = function () {
       Pics.imageList().then( function (result) {
-        result.forEach(function (imgObj) {
-          Pics.imageFetcher(imgObj.imghash)
-            .then((function (data) {
-              $scope.data = data
-            }));
-          Pics.imageFetcher(imgObj.backimghash)
-        })
+        console.log(result)
         $scope.images= result
       })
     }
@@ -41,26 +35,27 @@ angular.module('app.home', ['ngMaterial', "ng", "ngAnimate", "ngAria", 'angularM
     // ]
 
     $scope.show = function (index) {
-      console.log(index)
+     
       Collage.set({
         image1: $scope.images[index],
-        image2: $scope.images[index + 1]
+        image2: $scope.images[index]
       })
       ModalService.showModal({
         templateUrl: 'modal.html',
         controller: "ModalController"
       }).then(function (modal) {
         modal.element.modal();
+       
       });
     };
 
-    $scope.show2 = function (index) {
+    $scope.show2 = function () {
       ModalService.showModal({
         templateUrl: 'uploader.html',
         controller: "UploadCtrl"
       }).then(function (modal) {
         modal.element.modal();
-
+         
       });
     };
 

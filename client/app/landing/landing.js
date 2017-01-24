@@ -43,9 +43,9 @@ angular.module('app.landing', ['ngMaterial', "ng", "ngAnimate", "ngAria"])
                 </md-dialog>`,
         controller: DialogController
       });
+      
       function DialogController($scope, $mdDialog) {
         $scope.user = {};
-
         $scope.closeDialog = function () {
           console.log($scope.user)
           $http.defaults.headers.common['username'] = $scope.username

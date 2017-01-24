@@ -2,11 +2,11 @@
   <div>
     <md-button>
       <md-tooltip>Menu</md-tooltip>
-      <md-icon class="md-default-theme" ng-click="toggleLeft()" class="material-icons">restaurant_menu</md-icon>
+      <md-icon class="md-default-theme" ng-click="toggleLeft()" class="material-icons">menu</md-icon>
     </md-button>
   </div>
 </md-toolbar>
-<md-sidenav class="md-sidenav-left" md-component-id="left" md-whiteframe="20">
+<md-sidenav class="md-sidenav-left" md-component-id="left" md-whiteframe="24">
   <md-toolbar>
     <h1 class="head" class="md-toolbar-tools">Menu</h1>
   </md-toolbar>
@@ -16,55 +16,73 @@
     </md-button>
   </md-content>
 </md-sidenav>
-<md-button ng-click="show2()">Add Photos</md-button>
-<ul class="flex-container wrap">
-    <li class="flex-item ripplelink" md-whiteframe="24" ng-repeat="image in images track by $index"><p class="thumbnail"  ng-click="show($index)">{{data}} </p></li>
-</ul>
-<script type="text/ng-template" id="modal.html">
-    <div class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <div class="box">
-                    <img src="" />
-                    </div>
-                    <div class="box">
-                    <img src="" />
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" ng-click="close('No')" class="btn btn-default" data-dismiss="modal">No</button>
-                    <button type="button" ng-click="close('Yes')" class="btn btn-primary" data-dismiss="modal">Yes</button>
-                </div>
-            </div>
-        </div>
+<div class="row">
+    <div class="col-sm-offset-5 col-sm-2 text-center">
+<md-button ng-click="show2()" class="add">Add Photos</md-button>
     </div>
-</script>
-
-<script type="text/ng-template" id="uploader.html">
-    <div class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-    <div class="container">
-    <h1>Upload Photos</h1>
-    <form role="form" class="form" onsubmit="return false;">
-        <div class="form-group" >
-            <label for="file">File</label>
-            <input type="file" name="front" onchange="angular.element(this).scope().uploadFile('front',this.files)"/>
-            <label for="file">File2</label>
-            <input type="file" name="back" onchange="angular.element(this).scope().uploadFile('back',this.files)"/>
+</div>
+<div class="gridListdemoBasicUsage" >
+  <div>
+<md-grid-list md-cols-xs="1" 
+md-cols-sm="2" 
+md-cols-md="4" md-cols-gt-md="6" 
+md-row-height-gt-md="1:1" md-row-height="2:2"
+ md-gutter="12px" md-gutter-gt-sm="8px" >
+    <md-grid-tile   md-whiteframe="10"  class="flex-item ripplelink" ng-repeat="image in images track by $index" >
+       <md-tooltip>{{image.imgname}}</md-tooltip>
+      <img class="thumbnail" ng-src="/photos/{{image.imghash}}" ng-click="show($index)" />
+      <!--<md-grid-tile-footer>
+        <h3>{{image.imgname}}</h3>
+      </md-grid-tile-footer>-->
+    </md-grid-tile>
+     </md-grid-list>
+  </div>
+</div>
+<!--<ul class="flex-container wrap">
+  <li class="flex-item ripplelink" md-whiteframe="24" ng-repeat="image in images track by $index"><img class="thumbnail" ng-src="/photos/{{image.imghash}}" ng-click="show($index)" /></li>
+</ul>-->
+<script type="text/ng-template" id="modal.html">
+  <div class="modal fade">
+    <div class="modal-dialog fullscreen-dialog" >
+      <div class="modal-content">
+        <div class="modal-header">
+          <md-button type="button" class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true">&times;</md-button>
+          </div>
+          <div class="modal-body" layout="column">
+          <div>
+            <img ng-src="/photos/{{url.image1.imghash}}" />
+          </div>
+          <div >
+            <img ng-src="/photos/{{url.image2.backimghash}}" />
+          </div>
         </div>
-        <button id="upload" type="button" class="btn btn-primary" ng-click="connection()">Upload</button>
-    </form>
-        <div id="output" class="container"></div>
-<script>
-
-
+        <div class="modal-footer">
+          <md-button type="button" ng-click="close()" class="btn btn-primary" data-dismiss="modal">Close</md-button>
+        </div>
+      </div>
+    </div>
+  </div>
 </script>
-</div>
-</div>
-</div>
-</div>
-
-</script>
+<script type="text/ng-template" id="uploader.html">
+  <div class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="container">
+          <h1>Upload Photos</h1>
+          <form role="form" class="form" onsubmit="return false;">
+            <div class="form-group">
+              <label for="file">File</label>
+              <input type="file" name="front" onchange="angular.element(this).scope().uploadFile('front',this.files)" />
+              <label for="file">File2</label>
+              <input type="file" name="back" onchange="angular.element(this).scope().uploadFile('back',this.files)" />
+            </div>
+            <md-button id="upload" type="button" class="btn btn-primary" ng-click="connection()" data-dismiss="modal">Upload</md-button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <md-button type="button" ng-click="close()" class="btn btn-primary" data-dismiss="modal">Close</md-button>
+        </div>
+      </div>
+    </div>
+  <script>
+  </script>

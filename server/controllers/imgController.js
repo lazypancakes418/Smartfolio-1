@@ -4,14 +4,17 @@ var path = require('path')
 module.exports = {
   fetch: function (req, res) {
     var username  = req.headers.username;
-    console.log(username)
+
     db.raw(`select idusers from users where username = '${username}'`)
       .then(function (results) {
         var userID = results[0][0].idusers;
+
         db.raw(`SELECT * FROM IMAGES WHERE userid = ${userID}`)
           .then(function (results) {
+
           var data = results[0];
             res.status(200).send(data)
+            
         })
       })
   },
@@ -32,12 +35,14 @@ module.exports = {
 
   serve: function (req, res) {
     var location = path.join(__dirname, '../uploads')
+
      var imgUser = req.params.imgurl.split(' ')[0];
+
      var imgname = req.params.imgurl;
-     if(imgUser === req.headers.username) {
+    // if(imgUser === req.headers.username) {
        res.sendFile(`${location}/${imgname}`)
-     } else {
-       res.status(401).send('Not Allowed');
-     }
+     //} else {
+      // res.status(401).send('Not Allowed');
+     //}
   }
 };

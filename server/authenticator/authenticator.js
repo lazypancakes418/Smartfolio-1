@@ -14,13 +14,11 @@ module.exports =  {
     var user;
 
     if(!token) {
-      return res.send(403);
+      return res.sendStatus(403);
     }
 
     try {
-      console.log(token)
       user = jwt.decode(token, 'secret');
-      
       req.user = user;
       next();
     } catch (error) {

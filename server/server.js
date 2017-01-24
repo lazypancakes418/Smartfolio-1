@@ -35,6 +35,8 @@ app.use(morgan('dev'));
 
 app.use(express.static(path.join(__dirname, '/../client')));
 
+app.use(express.static(path.join(__dirname, '/lib')));
+
 require('./routes.js')(app, express);
 var port = process.env.PORT || 8000;
 
