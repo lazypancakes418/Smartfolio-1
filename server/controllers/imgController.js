@@ -1,5 +1,11 @@
 var db = require('./../config/db');
 var path = require('path');
+var aws = require('aws-sdk');
+aws.config.update({
+  secretAccessKey: process.env.AWSSecretKey,
+  accessKeyId: process.env.AWSAccessKeyId,
+  region: 'us-west-2'
+});
 
 module.exports = {
   fetch: function (req, res) {
@@ -41,13 +47,19 @@ module.exports = {
   },
 
   serve: function (req, res) {
-    var location = path.join(__dirname, '../uploads')
+    // var location = path.join(__dirname, '../uploads')
 
-    var imgUser = req.params.imgurl.split(' ')[0];
+    // var imgUser = req.params.imgurl.split(' ')[0];
 
     var imgname = req.params.imgurl;
+    var s3 = new aws.S3();
+    s3.getObject(
+      {Bucket: "elasticbeanstalk-us-west-2-353037981213",
+      Key: `upload/${imgname}`}
+    ).createReadStream().pipe(res)
     // if(imgUser === req.headers.username) {
-    res.sendFile(`${location}/${imgname}`)
+//     res.sendFile(`	
+// https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-353037981213/upload/${imgname}`)
     //} else {
     // res.status(401).send('Not Allowed');
     //}

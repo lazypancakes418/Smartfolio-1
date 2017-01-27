@@ -26,6 +26,7 @@
     "angular-mocks": "^1.6.1",
     "angular-modal-service": "^0.10.1",
     "angular-route": "^1.6.1",
+    "aws-sdk": "^2.9.0",
     "axios": "^0.15.3",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.16.0",
@@ -34,6 +35,7 @@
     "knex": "^0.12.6",
     "morgan": "^1.7.0",
     "multer": "^1.2.1",
+    "multer-s3": "^2.5.0",
     "mysql": "^2.13.0",
     "path": "^0.12.7",
     "watson-developer-cloud": "^2.15.2"

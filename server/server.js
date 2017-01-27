@@ -5,29 +5,48 @@ var path = require('path');
 var multer = require('multer');
 var bcrypt = require('bcrypt-nodejs');
 var path = require('path');
+var aws = require('aws-sdk');
+var multerS3 = require('multer-s3');
+aws.config.update({
+  secretAccessKey: process.env.AWSSecretKey,
+  accessKeyId: process.env.AWSAccessKeyId,
+  region: 'us-west-2'
+});
 
 var app = express();
+var s3 = new aws.S3();
+//Multer Methods
+// var imglocation = path.join(__dirname,'uploads');
+// var storage = multer.diskStorage({
+//   destination: function (req, file, cb){
+//     cb(null, imglocation);
+//   },
+//   filename: function (req, file, cb){
+//     bcrypt.hash(file.originalname, null, null, function (err, hash) {
+//       var string = `${req.headers.username} ${file.originalname}`
+//       cb(null, string)
+//     })
+//   }
+// })
 
-//Multer Methofs
-var imglocation = path.join(__dirname,'uploads');
-var storage = multer.diskStorage({
-  destination: function (req, file, cb){
-    cb(null, imglocation);
-  },
-  filename: function (req, file, cb){
-    bcrypt.hash(file.originalname, null, null, function (err, hash) {
+
+// var upload = multer({storage: storage}).fields([{
+//   name: 'front', maxcount: 1
+// }, {name: 'back', maxcount: 1}]);
+
+var upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: 'elasticbeanstalk-us-west-2-353037981213/upload',
+    key: function (req, file, cb) {
       var string = `${req.headers.username} ${file.originalname}`
       cb(null, string)
-    })
-  }
-})
-
-
-var upload = multer({storage: storage}).fields([{
+    }
+  })
+}).fields([{
   name: 'front', maxcount: 1
-}, {name: 'back', maxcount: 1}]);
-
-//End Multer Mehtods
+}, { name: 'back', maxcount: 1 }]);
+//End Multer Methods
 app.use(bodyParser.json());
 app.use(upload) //Multer Middleware
 
