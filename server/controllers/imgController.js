@@ -56,7 +56,7 @@ module.exports = {
     s3.getObject(
       {Bucket: "elasticbeanstalk-us-west-2-353037981213",
       Key: `upload/${imgname}`}
-    ).createReadStream().pipe(res)
+    ).createReadStream().pipe(res);
     // if(imgUser === req.headers.username) {
 //     res.sendFile(`	
 // https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-353037981213/upload/${imgname}`)
