@@ -366,3 +366,8 @@ md-input-container:not(.md-input-invalid).md-input-focused label {
     width: 100%;
     background-color: white;
 }
+
+.search-display {
+    margin: auto;
+}
+

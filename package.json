@@ -4,6 +4,7 @@
   "description": "An album app",
   "main": "server/server.js",
   "scripts": {
+    "start": "node server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --ignore node_modules server/server.js"
   },
