@@ -3,6 +3,14 @@ var fs = require('fs');
 var db = require('../config/db');
 var path = require('path')
 var location = path.join(__dirname,'../uploads');
+var aws = require('aws-sdk');
+aws.config.update({
+  secretAccessKey: process.env.AWSSecretKey,
+  accessKeyId: process.env.AWSAccessKeyId,
+  region: 'us-west-2'
+});
+
+
 var visual_recognition = watson.visual_recognition({
   api_key: process.env.api_key,
   version: 'v3',
@@ -10,14 +18,23 @@ var visual_recognition = watson.visual_recognition({
 });
 
 var watson = function () {
-  db.raw(`SELECT images.idimages from smartfolio.images where images.idimages not in  (select tags.idimages from smartfolio.tags)`)
+
+ var s3 = new aws.S3();
+
+db.raw(`SELECT images.idimages from smartfolio.images where images.idimages not in  (select tags.idimages from smartfolio.tags)`)
+
   .then(function (results) {
     results[0].forEach(function (imgid) {
       db.raw(`SELECT imghash from smartfolio.images where idimages  = ${imgid.idimages}`)
         .then(function (imgResult) {
           var imgName = imgResult[0][0].imghash;
           var params = {
-            images_file: fs.createReadStream(`${location}/${imgName}`)
+            images_file: s3.getObject(
+              {
+                Bucket: "elasticbeanstalk-us-west-2-353037981213",
+                Key: `upload/${imgName}`
+              }
+            ).createReadStream()
           };
 
           visual_recognition.detectFaces(params, function (err, res) {
@@ -58,24 +75,57 @@ var watson = function () {
       db.raw(`SELECT imghash from smartfolio.images where idimages  = ${imgid.idimages}`)
         .then(function (imgResult) {
           var imgName = imgResult[0][0].imghash;
-          var params = {
-            images_file: fs.createReadStream(`${location}/${imgName}`)
-          };
-          visual_recognition.classify(params, function (err, res) {
-            if (err) {
-              console.log(err);
-            } else {
-              console.log(res.images[0]);
-              res.images[0].classifiers[0].classes.forEach(function (tagClass) {
-                db.raw(`INSERT INTO smartfolio.tags VALUES (null, ${imgid.idimages}, '${tagClass.class}')`)
-                  .then(function (results) {
-                  })
-                  .catch(function (err) {
-                    console.log(err)
-                  })
-              });
-            }
-          });
+          // var params = {
+          //   images_file: fs.createReadStream(`${location}/${imgName}`)
+          // };
+          // visual_recognition.classify(params, function (err, res) {
+          //   if (err) {
+          //     console.log(err);
+          //   } else {
+          //     console.log(res.images[0]);
+          //     res.images[0].classifiers[0].classes.forEach(function (tagClass) {
+          //       db.raw(`INSERT INTO smartfolio.tags VALUES (null, ${imgid.idimages}, '${tagClass.class}')`)
+          //         .then(function (results) {
+          //         })
+          //         .catch(function (err) {
+          //           console.log(err)
+          //         })
+          //     });
+          //   }
+          // });
+          s3.getObject(
+              {
+                Bucket: "elasticbeanstalk-us-west-2-353037981213",
+                Key: `upload/${imgName}`
+              }, function (err, data){
+
+              }
+            )
+          
+          // var params = {
+          //   images_file: s3.getObject(
+          //     {
+          //       Bucket: "elasticbeanstalk-us-west-2-353037981213",
+          //       Key: `upload/${imgName}`
+          //     }
+          //   ).createReadStream()
+          // };
+          // console.log(params.images_file)
+          // visual_recognition.classify(params, function (err, res) {
+          //   if (err) {
+          //     console.log(err);
+          //   } else {
+          //     res.images[0].classifiers[0].classes.forEach(function (tagClass) {
+
+          //       db.raw(`INSERT INTO smartfolio.tags VALUES (null, ${imgid.idimages}, '${tagClass.class}')`)
+          //         .then(function (results) {
+          //         })
+          //         .catch(function (err) {
+          //           console.log(err)
+          //         })
+          //     });
+          //   }
+          // });
         })
     });
   }).catch(function (err) {
