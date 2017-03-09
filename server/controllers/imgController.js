@@ -53,9 +53,10 @@ module.exports = {
 
     var imgname = req.params.imgurl;
     var s3 = new aws.S3();
+    // console.log(aws.config)
     s3.getObject(
-      {Bucket: "elasticbeanstalk-us-west-2-353037981213",
-      Key: `upload/${imgname}`}
+      {Bucket: "smartfolio",
+      Key: `${imgname}`}
     ).createReadStream().pipe(res);
     // if(imgUser === req.headers.username) {
 //     res.sendFile(`	
