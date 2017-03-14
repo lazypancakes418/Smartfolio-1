@@ -45,13 +45,14 @@ module.exports = {
     var images = req.body.photos.map(function(photo) {
       return photo.idimages;
     });
+    console.log('here')
 
     // TODO: include catch statements at every layer of queries
     db.raw(`SELECT idusers FROM smartfolio.users WHERE username='${username}'`)
     .then(function (result) {
       var userID = result[0][0].idusers;
       db.raw(`INSERT INTO smartfolio.albums values (null, '${albumName}', '${albumDescription}', ${userID})`)
-      .then(function() {
+      .then(function(some) {
         db.raw(`SELECT MAX(idalbums) FROM smartfolio.albums`)
         .then(function(pKey) {
           var LAST_INSERT_ID = pKey[0][0]['MAX(idalbums)'];

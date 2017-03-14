@@ -1,4 +1,4 @@
-require('dotenv').config();
+// require('dotenv').config();
 var express = require('express');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
@@ -54,7 +54,7 @@ var s3 = new aws.S3();
 var upload = multer({
   storage: multerS3({
     s3: s3,
-    bucket: 'elasticbeanstalk-us-west-2-353037981213/upload',
+    bucket: 'smartfolio',
     key: function (req, file, cb) {
       var string = `${req.headers.username} ${file.originalname}`
       cb(null, string)
