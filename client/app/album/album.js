@@ -20,6 +20,7 @@ angular.module('app.album', ['ngMaterial', "ng", "ngAnimate", "ngAria"])
     $scope.fetcher = function() {
       Albums.albumList().then(function(result) {
         $rootScope.albums = result.map(function(album) {
+          console.log(album)
           album.imagesPath = album.images.map(function(image) {
             return $rootScope.images.find(function(photo) {
               return photo.idimages === image;

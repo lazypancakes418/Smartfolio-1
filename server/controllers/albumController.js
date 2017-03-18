@@ -19,17 +19,22 @@ module.exports = {
             // include all the photo information as a property of the data array that is sent back to client
             var actualImage = images[0];
             album['images'] = actualImage.map(function(imageID) {
-              return imageID.imageID;
+              return imageID.imageId;
             });
             data.push(album);
 
             if(data.length === albuminfo[0].length) {
               res.status(200).send(data);
             }
+          }).catch(function(err) {
+            console.error('error selecting images:', err);
           })
-          // TODO: create catch statements for more code robustness
         })
+      }).catch(function(err) {
+        console.error('error selecting albums:', err);
       })
+    }).catch(function(err) {
+      console.error('error selecting users:', err);
     })
   },
 
