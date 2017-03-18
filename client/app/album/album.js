@@ -20,7 +20,6 @@ angular.module('app.album', ['ngMaterial', "ng", "ngAnimate", "ngAria"])
     $scope.fetcher = function() {
       Albums.albumList().then(function(result) {
         $rootScope.albums = result.map(function(album) {
-          console.log(album)
           album.imagesPath = album.images.map(function(image) {
             return $rootScope.images.find(function(photo) {
               return photo.idimages === image;
@@ -33,7 +32,6 @@ angular.module('app.album', ['ngMaterial', "ng", "ngAnimate", "ngAria"])
 
     $scope.createAlbumRaw = function(albumInfo) {
       Albums.sendAlbum(albumInfo).then(function(result) {
-        console.log('album creation complete');
       });
     };
 
@@ -44,7 +42,6 @@ angular.module('app.album', ['ngMaterial', "ng", "ngAnimate", "ngAria"])
 
     $scope.addImage = function(image) {
       Albums.addImgToAlbum(image).then(function(result) {
-        console.log('successfully added image to album');
         // refresh and/or redirect to albums page with the newly added image
       });
     };

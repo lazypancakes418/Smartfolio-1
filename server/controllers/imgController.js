@@ -14,12 +14,16 @@ module.exports = {
     // retrieve all photos that belong to the logged-in user
     var username = req.headers.username;
     var data = []
+    console.log('here in fetch now')
     // TODO: create catch statements
     db.raw(`select idusers from smartfolio.users where username = '${username}'`) //get userID of the signed in user
       .then(function (userInfo) {
         var userID = userInfo[0][0].idusers;
         db.raw(`SELECT * FROM smartfolio.images WHERE userid = ${userID}`)  //get all the images name, location and id for the current users
           .then(function (imageInfo) {
+            if(imageInfo[0].length === 0){
+              res.status(200).send(data)
+            }
             imageInfo[0].forEach(function (image, index) {
               db.raw(`SELECT tag from smartfolio.tags where idimages = ${image.idimages}`) //get the tags of each image for the user
                 .then(function (tags) {
@@ -84,11 +88,18 @@ module.exports = {
           .then(function(result) {
             db.raw(`DELETE from smartfolio.images where imghash = '${deleteMeHash}'`)
             .then(function() {
-              var filePath = path.join(__dirname, `../uploads/${deleteMeHash}`);
-              fs.unlink(filePath,function(err){
-                if(err) return console.log(err);
-                  console.log('file deleted successfully');
-                });
+              var s3 = new aws.S3();
+              s3.getObject(
+                {
+                  Bucket: "smartfolio",
+                  Key: `${deleteMeHash}`
+                }
+              )
+              // var filePath = path.join(__dirname, `../uploads/${deleteMeHash}`);
+              // fs.unlink(filePath,function(err){
+              //   if(err) return console.log(err);
+              //     console.log('file deleted successfully');
+              //   });
               res.sendStatus(200);
         })
       })
