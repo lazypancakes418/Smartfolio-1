@@ -6,6 +6,7 @@ var path = require('path');
 var multer = require('multer');
 var bcrypt = require('bcrypt-nodejs');
 var path = require('path');
+var compression = require('compression')
 // var watson = require('./api/watson');
 var aws = require('aws-sdk');
 var multerS3 = require('multer-s3');
@@ -16,6 +17,7 @@ aws.config.update({
 });
 
 var app = express();
+app.use(compression({level: 9}))
 var s3 = new aws.S3();
 //Multer Methods
 // var imglocation = path.join(__dirname,'uploads');
