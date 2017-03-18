@@ -20,7 +20,6 @@ angular.module('app.shared', ['ngMaterial', "ng", "ngAnimate", "ngAria"])
       Shared.fetcher()
       .then(function(results) {
         $rootScope.sharedAlbums = results;
-        console.log(results);
       })
     };
 
@@ -28,7 +27,6 @@ angular.module('app.shared', ['ngMaterial', "ng", "ngAnimate", "ngAria"])
 
     $scope.updateAlbumID = function (album) { // adds or updates sharedAlbumID scope variable
       $rootScope.sharedAlbumID = album;
-      console.log('something', $rootScope.sharedAlbumID);
     }
 
     $scope.show2 = function () { //show the uplaod file modal

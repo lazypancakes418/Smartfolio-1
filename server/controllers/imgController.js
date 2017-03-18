@@ -14,7 +14,6 @@ module.exports = {
     // retrieve all photos that belong to the logged-in user
     var username = req.headers.username;
     var data = []
-    console.log('here in fetch now')
     // TODO: create catch statements
     db.raw(`select idusers from smartfolio.users where username = '${username}'`) //get userID of the signed in user
       .then(function (userInfo) {

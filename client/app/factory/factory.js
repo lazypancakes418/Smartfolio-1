@@ -136,7 +136,6 @@ angular.module('app.factory', [])
         method: 'DELETE',
         url: `/albums/${album}`
       }).then(function(resp) {
-        console.log('successfully deleted album');
         return resp.data;
       })
     };

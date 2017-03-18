@@ -76,10 +76,6 @@ module.exports = {
     var shareUsers = req.body.shareUsers; // expecting and array of userIds
     var permission = req.body.permission || 'read'; // TODO: Refactor share route to look for a permission for each user
     var count = 0;
-
-    console.log(albumID)
-    console.log(shareUsers)
-
     if(shareUsers.length > 0) {
       db.raw(`SELECT idusers FROM smartfolio.users WHERE username='${username}'`)
       .then(function(userInfo) {
@@ -102,7 +98,6 @@ module.exports = {
   getSharedList: function(req, res) {
     var albumID = req.params.albumid;
     var list = [];
-    console.log(albumID);
 
     db.raw(`SELECT * FROM smartfolio.shared WHERE albumid = '${albumID}' `)
     .then(function(sharedInfo) {

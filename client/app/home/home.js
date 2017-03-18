@@ -18,9 +18,7 @@ angular.module('app.home', ['ngMaterial', "ng", "ngAnimate", "ngAria", 'angularM
     };
 
     $scope.fetcher = function () { //fetches results from server an object caitaining results from database for the given user
-      console.log('here in fetcher')
       Pics.imageList().then(function (result) {
-        console.log(result)
         data = result;
         $rootScope.images = result;
       });
@@ -32,7 +30,6 @@ angular.module('app.home', ['ngMaterial', "ng", "ngAnimate", "ngAria", 'angularM
 
     $scope.onDrop = function($event, $data, albumContainer) {
       albumContainer.push($data);
-      console.log('new image pushed!', albumContainer);
     }
 
     $scope.show = function (index) { //takes the index of the image clicked and sets an object with the images information
@@ -79,7 +76,6 @@ angular.module('app.home', ['ngMaterial', "ng", "ngAnimate", "ngAria", 'angularM
                </div>
             </div> `,
         controller: function DialogController($scope, $mdDialog) {
-          console.log();
           $scope.tags = data[index].tags;
           $scope.close = function () {
             $mdDialog.hide();
@@ -88,10 +84,8 @@ angular.module('app.home', ['ngMaterial', "ng", "ngAnimate", "ngAria", 'angularM
       });
     };
     $scope.deleteImage = function (imghash) { //function to delete the image
-      console.log(imghash);
       Pics.imageDeleter(imghash)
       .then(function () {
-        console.log('after delete')
         Collage.getFetcher()();
       });
     }
