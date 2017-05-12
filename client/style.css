@@ -1,0 +1,261 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Raleway', sans-serif;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+    text-decoration: none;
+    color: #f9f9f9;
+}
+
+ul {
+    list-style: none;
+}
+
+md-toolbar.md-default-theme:not(.md-menu-toolbar),
+md-toolbar:not(.md-menu-toolbar) {
+    background-color: rgba(0, 0, 0, 0.8);
+    height: 100px
+}
+
+.md-sidenav-left,
+md-sidenav {
+    background-color: rgba(241, 111, 0, 0.6);
+}
+
+h1 {
+    color: rgb(241, 111, 0);
+}
+
+md-sidenav md-content {
+    background-color: rgb(0, 0, 0);
+    opacity: 10;
+}
+
+.add {
+    justify-content: center;
+    background-color: black;
+    color: rgb(241, 111, 0);
+}
+
+.imgbox {
+    width: 50%
+}
+
+md-grid-list md-grid-tile md-grid-tile-footer h3 {
+    font-size: 10px;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+}
+
+md-toolbar:not(.md-menu-toolbar) md-icon {
+    color: rgb(241, 111, 0);
+    height: auto;
+    width: auto;
+}
+
+.fullscreen-dialog {
+    max-width: 80%;
+    max-height: 80%;
+    width: 80%;
+    height: 80%;
+    border-radius: 0;
+}
+
+.material-icons {
+    font-size: 33px;
+    color: rgb(241, 111, 0);
+}
+
+.gridList md-grid-list {
+    margin: 30px 40px;
+}
+
+footer {
+    background-color: rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
+    opacity: 0.8;
+}
+
+.material-icons.md-light {
+    color: rgba(255, 255, 255, 1);
+}
+
+.material-icons.md-light.md-inactive {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.material-icons.md-48 {
+    font-size: 48px;
+}
+
+.loginForm {
+    width: 275px;
+}
+
+.form-control {
+    width: 500px;
+}
+
+.page {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    z-index: 1;
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.landing {
+    background-image: url("pexels-photo.jpg");
+}
+
+.home {
+    background-image: url("forest-meadow-leaves-autumn.jpg");
+}
+
+.settings {
+    background-image: url("Paris_raining_autumn_cityscape_(8252181936).jpg");
+}
+
+.head {
+    color: rgb(241, 111, 0);
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+}
+
+.login {
+    animation: scaleUp 1s both ease-in;
+    width: 500px;
+    margin: 6.9% auto;
+    padding: 48px 32px 32px 32px;
+    background: #fafafa;
+    opacity: 0.8;
+    border: 1px solid black;
+    box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px, rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
+}
+
+.update {
+    width: 500px;
+}
+
+.signup {
+    color: rgb(221, 44, 0);
+    width: 100%;
+    background-color: black;
+}
+
+div.ng-enter {
+    -webkit-animation: scaleUp 5s both ease-out;
+    -moz-animation: scaleUp 5s both ease-out;
+    animation: scaleUp 1s both ease-in;
+}
+
+.md-input-container {
+    border: 1px solid #ebebeb;
+}
+
+#pop {
+    width: 340px;
+    padding: 48px 32px 32px 32px;
+    border: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+.box {
+    display: flex;
+    width: 500px;
+    height: 500px;
+    margin: 0 auto;
+}
+
+.thumbnail {
+    margin: auto;
+    width: 100%;
+    max-width: 300px;
+    max-height: 100%
+}
+
+.modal-body {
+    width: 100%;
+}
+
+.modal-content {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+}
+
+.ripplelink:hover {
+    z-index: 1000;
+    box-shadow: rgba(0, 0, 0, 0.8) 0 16px 16px 0;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 16px 16px 0;
+    -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 16px 16px 0;
+}
+
+.search {
+    position: relative;
+    float: right;
+    margin: 4% auto;
+    width: 20%;
+    margin-bottom: 0;
+}
+
+md-input-container label {
+    color: rgb(241, 111, 0);
+}
+
+search_input {
+    color: rgb(241, 111, 0);
+}
+
+md-input-container:not(.md-input-invalid).md-input-focused .md-input {
+    color: rgb(241, 111, 0);
+    border-color: rgb(241, 111, 0);
+}
+
+md-grid-tile-footer {
+    justify-content: center;
+}
+
+.menu {
+    font-size: x-large;
+}
+
+.menu_content {
+    background: rgba(0, 0, 0, 0.92);
+}
+
+.menu_button {
+    color: rgb(241, 111, 0);
+}
+
+.tags {
+    width: 100%;
+    background: rgba(0, 0, 0, 0)
+}
+
+.md-chips:not(.md-readonly) {
+    background: rgba(0, 0, 0, 0);
+}
+
+input[type=file] {
+    color: rgb(241, 111, 0);
+}
+
+label {
+    color: rgb(241, 111, 0);
+}
+
+.md-button.md-accent {
+    color: rgb(241, 111, 0);
+}

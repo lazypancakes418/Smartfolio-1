@@ -1,0 +1,46 @@
+<md-toolbar>
+  <div>
+    <md-button>
+      <md-tooltip>Menu</md-tooltip>
+      <md-icon class="md-default-theme material-icons" ng-click="toggleLeft()">menu</md-icon>
+    </md-button>
+  </div>
+</md-toolbar>
+<md-sidenav class="md-sidenav-left" md-component-id="left" md-whiteframe="24">
+  <md-toolbar>
+    <h1  class="md-toolbar-tools head">Menu</h1>
+  </md-toolbar>
+  <md-content layout-margin="" layout="column">
+    <md-button ng-click="home()" class="md-accent">
+      Home
+    </md-button>
+    <md-button ng-click="settings()" class="md-accent">
+      Settings
+    </md-button>
+    <md-button ng-click="logoff()" class="md-accent">
+      Log Off
+    </md-button>
+    <md-button ng-click="toggleLeft()" class="md-accent">
+      Close Menu
+    </md-button>
+  </md-content>
+</md-sidenav>
+<form class="login update">
+  <h1>
+    Update Password
+  </h1>
+  <md-input-container class="loginForm">
+    <label>Old Password</label>
+    <input type="text" ng-model="" />
+  </md-input-container>
+  <md-input-container class="loginForm">
+    <label>New Password</label>
+    <input type="password" ng-model="" />
+  </md-input-container>
+  <md-input-container class="loginForm">
+    <label>Retype New Password</label>
+    <input type="password" ng-model="" />
+  </md-input-container>
+  <div layout="column" layout-align="center center" style="padding-top:20px;">
+<md-button class="btn btn-lg btn-primary btn-block add" ng-click="update()">Update</md-button>
+</form>

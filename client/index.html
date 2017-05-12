@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html ng-app="app" lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Smartfolio</title>
+
+  <link href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.2/ui-grid.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div ng-view class="{{pageClass}}"></div>
+
+  <footer>
+    <div id="social">
+        <ul class="social-icons">
+            <li><a href="" target="_blank"><img src="img/facebook.png" /></a></li>
+            <li><a href="" target="_blank"><img src="img/soundcloud.png" /></a></li>
+            <li><a href="" target="_blank"><img src="img/twitter.png" /></a></li>
+            <li><a href="" target="_blank"><img src="img/youtube.png" /></a></li>
+            <li><a href="" target="_blank"><img src="img/instagram.png" /></a></li>
+        </ul>
+    </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-aria.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.js"></script>
+  <script src="angular-modal-service.min.js"></script>
+  <script src="http://ngmaterial.assets.s3.amazonaws.com/svg-assets-cache.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-messages.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.2/ui-grid.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.3/axios.min.js"></script>
+  <script src="app/app.js"></script>
+  <script src="app/landing/landing.js"></script>
+  <script src="app/home/home.js"></script>
+  <script src="app/album/album.js"></script>
+  <script src="app/settings/settings.js"></script>
+  <script src="app/factory/factory.js"></script>
+</body>
+
+</html>
